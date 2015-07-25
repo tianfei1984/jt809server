@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="gb2312"?>
+<config>
+      <bean type="1001" class="com.ltmonitor.jt809.protocol.send.UpConnectReq"/><!-- 登录请求包   -->
+      <bean type="1200" class="com.ltmonitor.jt809.protocol.receive.UpExgMsg"/>
+      <bean type="1002" class="com.ltmonitor.jt809.protocol.receive.UpConnectRsp"/><!-- 登录应答包  -->
+      <bean type="1004" class="com.ltmonitor.jt809.protocol.receive.UpDisconnectRsp"/><!-- 主链路注销请求应答包  -->
+      <bean type="1006" class="com.ltmonitor.jt809.protocol.receive.UpLinkTestRsp"/><!-- 保持连接应答包 -->
+      <bean type="9005" class="com.ltmonitor.jt809.protocol.receive.DownLinkTestReq"/><!-- 保持连接应答包 -->
+      <bean type="9001" class="com.ltmonitor.jt809.protocol.receive.DownConnectReq"/><!-- 登录请求包   -->
+      <bean type="9003" class="com.ltmonitor.jt809.protocol.receive.DownDisconnectReq"/><!-- 从链路注销请求包   -->
+      <bean type="9501" class="com.ltmonitor.jt809.protocol.receive.DownCtrlMsgMonitorVehicleReq"/><!-- 车辆单项监控请求  -->
+      <bean type="9302" class="com.ltmonitor.jt809.protocol.receive.DownPlatformMsgInfoReq"/><!-- 报文间平台请求9302 ，应答1302 -->
+      <bean type="9502" class="com.ltmonitor.jt809.protocol.receive.DownCtrlMsgTakePhotoReq"/><!-- 车辆拍照请求与应答 -->
+      <bean type="9200" class="com.ltmonitor.jt809.protocol.receive.DownExgMsg"/><!-- -->
+      <bean type="9205" class="com.ltmonitor.jt809.protocol.receive.DownExgMsgReturnStartUp"/><!-- -->
+      <bean type="9206" class="com.ltmonitor.jt809.protocol.receive.DownExgMsgReturnEnd"/><!-- -->
+      <bean type="9209" class="com.ltmonitor.jt809.protocol.receive.DownExgMsgApplyHisGnssDataAck"/><!-- -->
+      <bean type="9500" class="com.ltmonitor.jt809.protocol.receive.DownCtrlMsg"/><!-- -->
+      <bean type="9600" class="com.ltmonitor.jt809.protocol.receive.DownBaseMsg"/><!-- -->
+      <bean type="9601" class="com.ltmonitor.jt809.protocol.receive.DownBaseMsgVehicleAdded"/><!-- -->
+      <bean type="9007" class="com.ltmonitor.jt809.protocol.receive.DownDisconnectInform"/><!-- -->
+      <bean type="9300" class="com.ltmonitor.jt809.protocol.receive.DownPlatformMsg"/>
+      <bean type="9301" class="com.ltmonitor.jt809.protocol.receive.DownPlatformMsgPostQueryReq"/>
+      <bean type="9504" class="com.ltmonitor.jt809.protocol.receive.DownCtrlMsgTakeTravelReq" /><!--　行车记录请求，应答　 -->
+      <bean type="9505" class="com.ltmonitor.jt809.protocol.receive.DownCtrlMsgEmergencyMonitoringReq"/><!--  车辆应急接入我监控平台   han  -->
+      <bean type="9402" class="com.ltmonitor.jt809.protocol.receive.DownWarnMsgInformTips"/><!-- 报警预警信息  下级平台不需要应答  han  -->
+      <bean type="9401" class="com.ltmonitor.jt809.protocol.receive.DownWarnMsgTodoReq"/>
+      <bean type="9400" class="com.ltmonitor.jt809.protocol.receive.DownWarnMsg"/>
+      <bean type="1402" class="com.ltmonitor.jt809.protocol.send.UpWarnMsgAdptInfo" /><!--  上报报警信息 数据体    han  -->
+      <bean type="9503" class="com.ltmonitor.jt809.protocol.receive.DownCtrlMsgTextInfo"/> <!--  下发消息到车辆    han  -->
+      <bean type="920A" class="com.ltmonitor.jt809.protocol.receive.DownExgMsgReportDriverInfo"/><!--驾驶员身份信息  -->
+      <bean type="920B" class="com.ltmonitor.jt809.protocol.receive.DownExgMsgTakeEwayBillReq"/><!--  电子运单    han  -->
+</config>

@@ -1,0 +1,9 @@
+/.settings
+/.externalToolBuilders
+/bin/
+/WebRoot/WEB-INF/classes/
+/WebRoot/WEB-INF/lib/
+/.classpath
+/*.bak
+/.project
+/.DS_Store

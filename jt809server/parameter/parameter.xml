@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<parameter protocolver="100000" localip="127.0.0.1"
+		platip="127.0.0.1" platport="19100" platid="8992" platuserid="8992"
+		platpassword="12345678" localport="7899" othernumber="2" idletime="15"
+		miyaom="10000000" miyaoa="20000000" miyaoc="30000000" licenseno="500225007943"
+		username="8992" />
+</config>
