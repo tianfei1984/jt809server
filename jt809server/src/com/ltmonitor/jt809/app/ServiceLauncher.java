@@ -42,7 +42,7 @@ public class ServiceLauncher {
 		commandService = (IJT809CommandService) getBean("jt809CommandService");
 		transferService = (ITransferService) getBean("transferService");
 		baseService = (IBaseService) getBean("baseService");
-		setBaseDao((IBaseDao) getBean("baseDao"));
+		BaseDao = ((IBaseDao) getBean("baseDao"));
 		logger.info("成功加载数据库和服务");
 		// URL log4jRes = ServiceLauncher.class.getResource("log4j.properties");
 	}
