@@ -6,6 +6,11 @@ import com.ltmonitor.entity.GnssData;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 
+/**
+ * 交换车辆定位信息
+ * @author tianfei
+ *
+ */
 public class DownExgMsgCarLocation implements IReceiveProtocol {
 	private static Logger logger = Logger
 			.getLogger(DownExgMsgCarLocation.class);

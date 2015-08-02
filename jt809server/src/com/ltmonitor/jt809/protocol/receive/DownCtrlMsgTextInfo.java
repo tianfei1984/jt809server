@@ -1,19 +1,17 @@
 package com.ltmonitor.jt809.protocol.receive;
 
 import org.apache.log4j.Logger;
-
 import com.ltmonitor.entity.TerminalCommand;
-import com.ltmonitor.jt809.app.GlobalConfig;
 import com.ltmonitor.jt809.app.ServiceLauncher;
-import com.ltmonitor.jt809.app.T809Manager;
 import com.ltmonitor.jt809.model.JT809Message;
-import com.ltmonitor.jt809.model.ParameterModel;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
-import com.ltmonitor.jt809.server.PlatformClient;
-import com.ltmonitor.jt809.tool.Tools;
 import com.ltmonitor.service.JT808Constants;
 
-
+/**
+ * 下发车辆请求报文消息s
+ * @author tianfei
+ *
+ */
 public class DownCtrlMsgTextInfo implements IReceiveProtocol {
 	private static Logger logger = Logger.getLogger(DownCtrlMsgTextInfo.class);
 

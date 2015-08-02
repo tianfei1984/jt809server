@@ -6,7 +6,11 @@ import com.ltmonitor.jt809.app.T809Manager;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 
-
+/**
+ * 主链路注销应答
+ * @author tianfei
+ *
+ */
 public class UpDisconnectRsp implements IReceiveProtocol {
 	private Logger logger = Logger.getLogger(UpDisconnectRsp.class);
 

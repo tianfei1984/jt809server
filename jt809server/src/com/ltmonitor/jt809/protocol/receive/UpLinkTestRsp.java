@@ -5,9 +5,12 @@
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 
- 
- public class UpLinkTestRsp
-   implements IReceiveProtocol
+ /**
+  * 主链路连接保持应答
+  * @author tianfei
+  *
+  */
+ public class UpLinkTestRsp implements IReceiveProtocol
  {
    private static Logger logger = Logger.getLogger(Logger.class);
  

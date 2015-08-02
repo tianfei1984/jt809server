@@ -10,6 +10,11 @@ import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.model.VehicleModel;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 
+/**
+ * 补报车辆静态信息请求消息
+ * @author tianfei
+ *
+ */
 public class DownBaseMsgVehicleAdded implements IReceiveProtocol {
 	Logger logger = Logger.getLogger(DownBaseMsgVehicleAdded.class);
 
@@ -41,23 +46,17 @@ public class DownBaseMsgVehicleAdded implements IReceiveProtocol {
 				vm.setNationallity(vd.getRegion()); // 车籍贯
 				vm.setTransType(vd.getIndustry()); // 运输行业代码
 
-				try {
-					// 车辆所属业户信息
-					MemberInfo mi = (MemberInfo) ServiceLauncher.getBaseDao()
-							.load(MemberInfo.class, vd.getMemberId());
-					vm.setOwnerName(mi.getName());
-					vm.setOwnerTel(mi.getContactPhone());
-					vm.setOwnerId("" + mi.getEntityId());
-				} catch (Exception ex) {
-					vm.setOwnerName("四川宜宾众凯物流有限公司");
-					vm.setOwnerTel("15814030918");
-					vm.setOwnerId("12345678");
-				}
+				// 车辆所属业户信息
+				MemberInfo mi = (MemberInfo) ServiceLauncher.getBaseDao()
+						.load(MemberInfo.class, vd.getMemberId());
+				vm.setOwnerName(mi.getName());
+				vm.setOwnerTel(mi.getContactPhone());
+				vm.setOwnerId("" + mi.getEntityId());
 
 				return vm;
 			}
 		} catch (Exception ex) {
-
+			
 		}
 		return null;
 	}

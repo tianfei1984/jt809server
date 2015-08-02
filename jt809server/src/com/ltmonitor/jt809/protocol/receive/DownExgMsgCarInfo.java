@@ -5,7 +5,11 @@ import org.apache.log4j.Logger;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 
-
+/**
+ * 交换车辆静态信息
+ * @author tianfei
+ *
+ */
 public class DownExgMsgCarInfo implements IReceiveProtocol {
 	private static Logger logger = Logger.getLogger(DownExgMsgCarInfo.class);
 

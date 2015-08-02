@@ -6,7 +6,11 @@ import com.ltmonitor.jt809.app.T809Manager;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 
- 
+/**
+ * Ö÷Á´Â·µÇÂ¼Ó¦´ð  0X1002 
+ * @author tianfei
+ *
+ */
  public class UpConnectRsp
    implements IReceiveProtocol
  {

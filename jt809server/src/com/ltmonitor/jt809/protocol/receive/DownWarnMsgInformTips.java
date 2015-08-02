@@ -1,14 +1,16 @@
  package com.ltmonitor.jt809.protocol.receive;
  
- import org.apache.log4j.Logger;
-
+import org.apache.log4j.Logger;
 import com.ltmonitor.entity.WarnData;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
-import com.ltmonitor.jt809.tool.Tools;
 
- 
- public class DownWarnMsgInformTips
+/**
+ * ±¨¾¯Ô¤¾¯ÏûÏ¢
+ * @author tianfei
+ *
+ */
+public class DownWarnMsgInformTips
    implements IReceiveProtocol
  {
    private Logger logger = Logger.getLogger(DownWarnMsgInformTips.class);

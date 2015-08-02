@@ -1,20 +1,19 @@
 package com.ltmonitor.jt809.protocol.receive;
 
 import java.util.Date;
-
 import org.apache.log4j.Logger;
-
 import com.ltmonitor.entity.TerminalCommand;
-import com.ltmonitor.jt809.app.GlobalConfig;
 import com.ltmonitor.jt809.app.ServiceLauncher;
 import com.ltmonitor.jt809.app.T809Manager;
 import com.ltmonitor.jt809.model.EmergencyAccessInfo;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
-import com.ltmonitor.jt809.server.PlatformClient;
-import com.ltmonitor.jt809.tool.Tools;
 import com.ltmonitor.service.JT808Constants;
-
+/**
+ * 车辆应急接入监控平台请求消息
+ * @author tianfei
+ *
+ */
 public class DownCtrlMsgEmergencyMonitoringReq implements IReceiveProtocol {
 	public static Logger logger = Logger
 			.getLogger(DownCtrlMsgEmergencyMonitoringReq.class);

@@ -6,7 +6,11 @@ import com.ltmonitor.jt809.app.T809Manager;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 
-
+/**
+ * 启动车辆定位信息交换请求消息
+ * @author tianfei
+ *
+ */
 public class DownExgMsgReturnStartUp implements IReceiveProtocol {
 	private Logger logger = Logger.getLogger(DownExgMsgReturnStartUp.class);
 
@@ -33,9 +37,5 @@ public class DownExgMsgReturnStartUp implements IReceiveProtocol {
 
 	private void updateUploadOrder() {
 		System.out.println("暂无更新");
-	}
-
-	public static void main(String[] args) {
-		//new DownExgMsgReturnStartUp().ResolveHandle(new MessageModel());
 	}
 }

@@ -1,16 +1,14 @@
 package com.ltmonitor.jt809.protocol.receive;
 
 import org.apache.log4j.Logger;
-
 import com.ltmonitor.entity.TerminalCommand;
 import com.ltmonitor.jt809.app.ServiceLauncher;
-import com.ltmonitor.jt809.app.T809Manager;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 import com.ltmonitor.service.JT808Constants;
 
 /**
- * 单向监听请求消息 9501
+ * 车辆单向监听请求消息 9501
  * 
  * @author DELL
  * 

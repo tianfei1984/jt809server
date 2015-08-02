@@ -9,7 +9,11 @@ import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 import com.ltmonitor.jt809.tool.Tools;
 
-
+/**
+ * 平台查岗请求消息
+ * @author tianfei
+ *
+ */
 public class DownPlatformMsgPostQueryReq implements IReceiveProtocol {
 	private static Logger logger = Logger
 			.getLogger(DownPlatformMsgPostQueryReq.class);

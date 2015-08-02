@@ -58,7 +58,7 @@ import com.ltmonitor.jt809.tool.Tools;
 import com.ltmonitor.util.DateUtil;
 
 /**
- * Ìá¹©Íâ²¿µ÷ÓÃ809×ª·¢Æ½Ì¨µÄ½Ó¿Ú
+ * æä¾›å¤–éƒ¨è°ƒç”¨809è½¬å‘å¹³å°çš„æ¥å£
  * 
  * @author DELL
  * 
@@ -73,18 +73,23 @@ public class T809Manager {
 	public static boolean encrypt = false;
 
 	/**
-	 * ÊµÊ±¶¨Î»ĞÅÏ¢£¬Èç¹ûÖ÷´ÓÁ´Â·¶¼¶ÏµôµÄÇé¿öÏÂ£¬ĞèÒªÑ¹Èë¶ÓÁĞ£¬µÈÁ´Â·»Ö¸´Õı³£ºó£¬Í¨¹ı²¹·¢Ğ­Òé½øĞĞ²¹·¢
+	 * å®æ—¶å®šä½ä¿¡æ¯ï¼Œå¦‚æœä¸»ä»é“¾è·¯éƒ½æ–­æ‰çš„æƒ…å†µä¸‹ï¼Œéœ€è¦å‹å…¥é˜Ÿåˆ—ï¼Œç­‰é“¾è·¯æ¢å¤æ­£å¸¸åï¼Œé€šè¿‡è¡¥å‘åè®®è¿›è¡Œè¡¥å‘
 	 */
 	private static ConcurrentLinkedQueue<GnssData> gnssDataQueueWaitForSend = new ConcurrentLinkedQueue<GnssData>();
 
+	/**
+	 * è®¾ç½®ä¸»é“¾è·¯è¿æ¥çŠ¶æ€
+	 * @param connect
+	 * @param errorMsg
+	 */
 	public static void setMainLinkState(boolean connect, String errorMsg) {
 		try {
 			mainLinkConnected = connect;
 			PlatformState ps = ServiceLauncher.getPlateformState();
 			if (connect == false) {
-				ps.setMainLinkState("Á¬½Ó´íÎó:" + errorMsg);
+				ps.setMainLinkState("è¿æ¥é”™è¯¯:" + errorMsg);
 			} else {
-				ps.setMainLinkState("Á¬½Ó³É¹¦");
+				ps.setMainLinkState("è¿æ¥æˆåŠŸ");
 				ps.setMainLinkDate(new Date());
 			}
 			ServiceLauncher.updatePlateformState(ps);
@@ -92,7 +97,11 @@ public class T809Manager {
 			logger.error(e.getMessage(), e);
 		}
 	}
-
+	/**
+	 * Â è®¾ç½®ä»é“¾è·¯è¿æ¥çŠ¶æ€
+	 * @param connect
+	 * @param errorMsg
+	 */
 	public static void setSubLinkState(boolean connect, String errorMsg) {
 		try {
 			subLinkConnected = connect;
@@ -100,7 +109,7 @@ public class T809Manager {
 			if (connect == false) {
 				ps.setSubLinkState(errorMsg);
 			} else {
-				ps.setSubLinkState("Á¬½Ó³É¹¦");
+				ps.setSubLinkState("è¿æ¥æˆåŠŸ");
 				ps.setSubLinkDate(new Date());
 			}
 			ServiceLauncher.updatePlateformState(ps);
@@ -120,8 +129,7 @@ public class T809Manager {
 				if (g != null) {
 					gnssDataList.add(g);
 					if (gnssDataList.size() == 1) {
-						UpExgMsgHistoryLocations(g.getPlateNo(),
-								g.getPlateColor(), gnssDataList);
+						UpExgMsgHistoryLocations(g.getPlateNo(),g.getPlateColor(), gnssDataList);
 						gnssDataList.clear();
 					}
 				}
@@ -136,16 +144,16 @@ public class T809Manager {
 	}
 
 	/**
-	 * ÉêÇë½»»»Ö¸¶¨³µÁ¾¶¨Î»ĞÅÏ¢
+	 * ç”³è¯·äº¤æ¢æŒ‡å®šè½¦è¾†å®šä½ä¿¡æ¯
 	 * 
 	 * @param PlateNo
-	 *            ³µÅÆºÅ
+	 *            è½¦ç‰Œå·
 	 * @param color
-	 *            ÑÕÉ«
+	 *            é¢œè‰²
 	 * @param start
-	 *            ¿ªÊ¼Ê±¼ä
+	 *            å¼€å§‹æ—¶é—´
 	 * @param end
-	 *            ½áÊøÊ±¼ä
+	 *            ç»“æŸæ—¶é—´
 	 */
 	public static boolean UpExgMsgApplyForMonitorStartup(String PlateNo,
 			byte color, Date start, Date end) {
@@ -156,7 +164,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * Ö÷Á´Â·Á¬½ÓÇëÇó1001
+	 * ä¸»é“¾è·¯è¿æ¥è¯·æ±‚1001
 	 * 
 	 * @return
 	 */
@@ -168,7 +176,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * Ö÷¶¯¹Ø±ÕÖ÷´ÓÁ´Â·Í¨Öª1008
+	 * ä¸»åŠ¨å…³é—­ä¸»ä»é“¾è·¯é€šçŸ¥1008
 	 * 
 	 * @return
 	 */
@@ -178,7 +186,7 @@ public class T809Manager {
 		return Send(msg);
 	}
 	/**
-	 * Ö÷Á´Â·¶Ï¿ªÍ¨Öª1007
+	 * ä¸»é“¾è·¯æ–­å¼€é€šçŸ¥1007
 	 * 
 	 * @return
 	 */
@@ -189,7 +197,7 @@ public class T809Manager {
 	}
 	
 	/**
-	 * Ö÷Á´Â·¶Ï¿ªÍ¨Öª
+	 * ä¸»é“¾è·¯æ–­å¼€é€šçŸ¥
 	 * 
 	 * @return
 	 */
@@ -202,7 +210,7 @@ public class T809Manager {
 	
 
 	/**
-	 * Ö÷Á´Â·ĞÄÌø²âÊÔ1005
+	 * ä¸»é“¾è·¯å¿ƒè·³æµ‹è¯•1005
 	 * 
 	 * @return
 	 */
@@ -213,14 +221,14 @@ public class T809Manager {
 	}
 
 	/**
-	 * ÇëÇóÖ÷¶¯²¹·¢Ö¸¶¨³µÁ¾¶¨Î»ĞÅÏ¢ 1209
+	 * è¯·æ±‚ä¸»åŠ¨è¡¥å‘æŒ‡å®šè½¦è¾†å®šä½ä¿¡æ¯ 1209
 	 * 
 	 * @param PlateNo
 	 * @param color
 	 * @param start
-	 *            ¿ªÊ¼Ê±¼ä
+	 *            å¼€å§‹æ—¶é—´
 	 * @param end
-	 *            ½áÊøÊ±¼ä
+	 *            ç»“æŸæ—¶é—´
 	 */
 	public static boolean UpExgMsgApplyHisGnssDataReq(String PlateNo,
 			byte color, Date start, Date end) {
@@ -231,7 +239,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * È¡ÏûÉêÇë½»»»Ö¸¶¨³µÁ¾ÇëÇó1208
+	 * å–æ¶ˆç”³è¯·äº¤æ¢æŒ‡å®šè½¦è¾†è¯·æ±‚1208
 	 * 
 	 * @param PlateNo
 	 * @param color
@@ -245,7 +253,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¾²Ì¬³µÁ¾×¢²á1201
+	 * é™æ€è½¦è¾†æ³¨å†Œ1201
 	 * 
 	 * @param vm
 	 * @return
@@ -257,13 +265,13 @@ public class T809Manager {
 	}
 
 	/**
-	 * ÊµÊ±ÉÏ´«³µÁ¾¶¨Î»ÏûÏ¢ 1202
+	 * å®æ—¶ä¸Šä¼ è½¦è¾†å®šä½æ¶ˆæ¯ 1202
 	 * 
 	 * @param gnssData
 	 * @return
 	 */
 	public static boolean UpExgMsgRealLocation(GnssData gnssData) {
-		// Èç¹ûÁ´Â·¶Ï¿ª£¬ÔòĞèÒªÑ¹Èëµ½¶ÓÁĞÖĞ£¬µÈ´ı²¹·¢
+		// å¦‚æœé“¾è·¯æ–­å¼€ï¼Œåˆ™éœ€è¦å‹å…¥åˆ°é˜Ÿåˆ—ä¸­ï¼Œç­‰å¾…è¡¥å‘
 		if (mainLinkConnected == false && subLinkConnected == false) {
 			if(gnssDataQueueWaitForSend.size() > 3000)
 				gnssDataQueueWaitForSend.clear();
@@ -276,7 +284,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¶¨Î»ĞÅÏ¢×Ô¶¯²¹±¨1203
+	 * å®šä½ä¿¡æ¯è‡ªåŠ¨è¡¥æŠ¥1203
 	 * 
 	 * @param gnssDatas
 	 * @return
@@ -290,7 +298,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ÉÏ±¨±¨¾¯ĞÅÏ¢ 1402
+	 * ä¸ŠæŠ¥æŠ¥è­¦ä¿¡æ¯ 1402
 	 * 
 	 * @param wd
 	 * @return
@@ -302,7 +310,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ÉÏ±¨±¨¾¯ÌÀí½Y¹ûĞÅÏ¢ 1403
+	 * ä¸ŠæŠ¥æŠ¥è­¦è™•ç†çµæœä¿¡æ¯ 1403
 	 * 
 	 * @param wd
 	 * @return
@@ -316,7 +324,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * Ö÷¶¯ÉÏ±¨µç×ÓÔËµ¥ÏûÏ¢ 120D
+	 * ä¸»åŠ¨ä¸ŠæŠ¥ç”µå­è¿å•æ¶ˆæ¯ 120D
 	 * 
 	 * @param dm
 	 * @return
@@ -329,10 +337,10 @@ public class T809Manager {
 		return Send(mess);
 	}
 
-	// ÏòÉÏ¼¶Æ½Ì¨·¢ËÍÊı¾İ
+	// å‘ä¸Šçº§å¹³å°å‘é€æ•°æ®
 	private static boolean Send(String msg) {
 		PlatformClient pc = PlatformClient.getInstance();
-		// ÓÅÏÈÊ¹ÓÃÖ÷Á´Â··¢ËÍÊı¾İ
+		// ä¼˜å…ˆä½¿ç”¨ä¸»é“¾è·¯å‘é€æ•°æ®
 		boolean res = true;
 		if (PlatformClient.Send(msg) == false) {
 			res = LocalServer.Send(msg);
@@ -341,7 +349,7 @@ public class T809Manager {
 	}
 	
 
-	// ÏòÉÏ¼¶Æ½Ì¨·¢ËÍÊı¾İ
+	// å‘ä¸Šçº§å¹³å°å‘é€æ•°æ®
 	public static boolean Send(JT809Message msg) {
 		String strMsg = Tools.getHeaderAndFlag(GlobalConfig.getSN(),
 				msg.getMessageBody(), msg.getMsgType(),
@@ -352,20 +360,20 @@ public class T809Manager {
 	}
 
 	/**
-	 * Æô¶¯Ö÷Á´Â·Á¬½ÓºÍ´ÓÁ´Â·¼àÌı
+	 * å¯åŠ¨ä¸»é“¾è·¯è¿æ¥å’Œä»é“¾è·¯ç›‘å¬
 	 */
 	public static boolean StartServer() {
-		// Ö÷Á´Â·Á¬½Ó
+		// ä¸»é“¾è·¯è¿æ¥
 		PlatformClient pc = PlatformClient.getInstance();
 
 		boolean res = pc.start();
 		if (res) {
 			LocalServer ls = LocalServer.getInstance();
-			// ´ÓÁ´Â·¼àÌı
+			// ä»é“¾è·¯ç›‘å¬
 			res = ls.start();
 			ServiceLauncher.getCommandService().Start();
 
-			// Æô¶¯¶¨Ê±Æ÷
+			// å¯åŠ¨å®šæ—¶å™¨
 			DNSSTimer.getInstance().start();
 		}
 		return res;
@@ -374,7 +382,7 @@ public class T809Manager {
 
 
 	/**
-	 * Í£Ö¹·şÎñ
+	 * åœæ­¢æœåŠ¡
 	 */
 	public static void StopServer() {
 		DNSSTimer.getInstance().Stop();
@@ -387,23 +395,23 @@ public class T809Manager {
 		LocalServer ls = LocalServer.getInstance();
 		ls.Stop();
 
-		T809Manager.setSubLinkState(false, "´ÓÁ´Â·Ö÷¶¯¶Ï¿ª");
-		T809Manager.setMainLinkState(false, "Ö÷Á´Â·Ö÷¶¯¶Ï¿ª");
+		T809Manager.setSubLinkState(false, "ä»é“¾è·¯ä¸»åŠ¨æ–­å¼€");
+		T809Manager.setMainLinkState(false, "ä¸»é“¾è·¯ä¸»åŠ¨æ–­å¼€");
 
 	}
 
 	/**
-	 * ¹Ø±Õ´ÓÁ´Â·
+	 * å…³é—­ä»é“¾è·¯
 	 */
 	public static void CloseSubLink() {
 		LocalServer ls = LocalServer.getInstance();
 		ls.Stop();
 
-		T809Manager.setSubLinkState(false, "´ÓÁ´Â·Ö÷¶¯¶Ï¿ª");
+		T809Manager.setSubLinkState(false, "ä»é“¾è·¯ä¸»åŠ¨æ–­å¼€");
 	}
 
 	/**
-	 * ¹Ø±ÕÖ÷Á¬½Ó
+	 * å…³é—­ä¸»è¿æ¥
 	 */
 	public static void CloseMainLink() {
 
@@ -411,13 +419,13 @@ public class T809Manager {
 		pc.Stop();
 		GlobalConfig.isOpenPlat = false;
 		GlobalConfig.isRegist = false;
-		T809Manager.setMainLinkState(false, "Ö÷Á´Â·Ö÷¶¯¶Ï¿ª");
+		T809Manager.setMainLinkState(false, "ä¸»é“¾è·¯ä¸»åŠ¨æ–­å¼€");
 	}
 
-	// *******************Ò»ÏÂÎª×Ô¶¯Ó¦´ğ½Ó¿Ú***************************************/
+	// *******************ä¸€ä¸‹ä¸ºè‡ªåŠ¨åº”ç­”æ¥å£***************************************/
 
 	/**
-	 * ¶Ô´ÓÁ´Â·Á¬½ÓÇëÇóĞÅÏ¢µÄÓ¦´ğ
+	 * å¯¹ä»é“¾è·¯è¿æ¥è¯·æ±‚ä¿¡æ¯çš„åº”ç­” 0x9002
 	 */
 	public static boolean DownConnectRsp() {
 
@@ -427,9 +435,9 @@ public class T809Manager {
 	}
 
 
-	// ÏòÉÏ¼¶Æ½Ì¨·¢ËÍÊı¾İ
+	// å‘ä¸Šçº§å¹³å°å‘é€æ•°æ®
 		private static boolean SendFromSubLink(String msg) {
-			// ÓÅÏÈÊ¹ÓÃÖ÷Á´Â··¢ËÍÊı¾İ
+			// ä¼˜å…ˆä½¿ç”¨ä¸»é“¾è·¯å‘é€æ•°æ®
 			boolean res = LocalServer.Send(msg);
 			if (res = false) {
 				PlatformClient pc = PlatformClient.getInstance();
@@ -438,7 +446,7 @@ public class T809Manager {
 			return res;
 		}
 		
-		// ÏòÉÏ¼¶Æ½Ì¨·¢ËÍÊı¾İ
+		// å‘ä¸Šçº§å¹³å°å‘é€æ•°æ®
 		public static boolean SendFromSubLink(JT809Message msg) {
 			String strMsg = Tools.getHeaderAndFlag(GlobalConfig.getSN(),
 					msg.getMessageBody(), msg.getMsgType(),
@@ -450,7 +458,7 @@ public class T809Manager {
 		
 		
 	/**
-	 * ¶Ô´ÓÁ´Â·×¢Ïú9003ÇëÇóĞÅÏ¢µÄÓ¦´ğ
+	 * å¯¹ä»é“¾è·¯æ³¨é”€9003è¯·æ±‚ä¿¡æ¯çš„åº”ç­”
 	 */
 	public static boolean DownDisconnectRsp() {
 
@@ -460,7 +468,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¶Ô´ÓÁ´Â·±£³ÖĞÅÏ¢µÄÓ¦´ğ
+	 * å¯¹ä»é“¾è·¯ä¿æŒä¿¡æ¯çš„åº”ç­”
 	 */
 	public static boolean DownLinkTestRsp() {
 
@@ -470,7 +478,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¶ÔÉÏ¼¶Æ½Ì¨Æô¶¯½»»»³µÁ¾¶¨Î»ĞÅÏ¢µÄÓ¦´ğ
+	 * å¯¹ä¸Šçº§å¹³å°å¯åŠ¨äº¤æ¢è½¦è¾†å®šä½ä¿¡æ¯çš„åº”ç­”
 	 * 
 	 * @param plateNo
 	 * @param plateColor
@@ -486,7 +494,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¶ÔÉÏ¼¶Æ½Ì¨½áÊø½»»»³µÁ¾¶¨Î»ĞÅÏ¢µÄÓ¦´ğ
+	 * å¯¹ä¸Šçº§å¹³å°ç»“æŸäº¤æ¢è½¦è¾†å®šä½ä¿¡æ¯çš„åº”ç­”
 	 * 
 	 * @param plateNo
 	 * @param plateColor
@@ -501,7 +509,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¶ÔÉÏ¼¶Æ½Ì¨±¨ÎÄĞÅÏ¢µÄÓ¦´ğ
+	 * å¯¹ä¸Šçº§å¹³å°æŠ¥æ–‡ä¿¡æ¯çš„åº”ç­”
 	 * 
 	 * @param plateNo
 	 * @param plateColor
@@ -517,7 +525,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¶ÔÉÏ¼¶Æ½Ì¨µ¥Ïò¼àÌıµÄÓ¦´ğ
+	 * å¯¹ä¸Šçº§å¹³å°å•å‘ç›‘å¬çš„åº”ç­”
 	 * 
 	 * @param plateNo
 	 * @param plateColor
@@ -534,7 +542,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¶ÔÉÏ¼¶Æ½Ì¨³µÁ¾Ó¦¼±½ÓÈëµÄÓ¦´ğ
+	 * å¯¹ä¸Šçº§å¹³å°è½¦è¾†åº”æ€¥æ¥å…¥çš„åº”ç­”
 	 * 
 	 * @param plateNo
 	 * @param plateColor
@@ -551,12 +559,12 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¶ÔÉÏ¼¶Æ½Ì¨³µÁ¾ĞĞ³µ¼ÇÂ¼ÒÇÇëÇóµÄÓ¦´ğ 1504
+	 * å¯¹ä¸Šçº§å¹³å°è½¦è¾†è¡Œè½¦è®°å½•ä»ªè¯·æ±‚çš„åº”ç­” 1504
 	 * 
 	 * @param plateNo
 	 * @param plateColor
 	 * @param cmdType
-	 *            ĞĞ³µ¼ÇÂ¼ÒÇÃüÁî×Ö
+	 *            è¡Œè½¦è®°å½•ä»ªå‘½ä»¤å­—
 	 * @return
 	 */
 	public static boolean UpCtrlMsgTakeTravelAck(String plateNo,
@@ -569,7 +577,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ¶ÔÉÏ¼¶Æ½Ì¨ÇëÇó¼İÊ»Ô±Éí·İµÄÓ¦´ğ
+	 * å¯¹ä¸Šçº§å¹³å°è¯·æ±‚é©¾é©¶å‘˜èº«ä»½çš„åº”ç­”
 	 * 
 	 * @param dm
 	 * @return
@@ -581,7 +589,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * Ö÷¶¯ÉÏ±¨¼İÊ»Ô±Éí·İ
+	 * ä¸»åŠ¨ä¸ŠæŠ¥é©¾é©¶å‘˜èº«ä»½
 	 * 
 	 * @param dm
 	 * @return
@@ -593,7 +601,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ÉÏ±¨µç×ÓÔËµ¥ÇëÇóÏûÏ¢Ó¦´ğ 120B
+	 * ä¸ŠæŠ¥ç”µå­è¿å•è¯·æ±‚æ¶ˆæ¯åº”ç­” 120B
 	 * 
 	 * @param dm
 	 * @return
@@ -607,7 +615,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * ²¹±¨³µÁ¾¾²ĞÅÏ¢Ó¦´ğ 1601
+	 * è¡¥æŠ¥è½¦è¾†é™æ€ä¿¡æ¯åº”ç­” 1601
 	 * 
 	 * @param dm
 	 * @return
@@ -619,7 +627,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * Æ½Ì¨²é¸ÚÓ¦´ğ 1301
+	 * å¹³å°æŸ¥å²—åº”ç­” 1301
 	 * 
 	 * @param dm
 	 * @return
@@ -631,7 +639,7 @@ public class T809Manager {
 	}
 
 	/**
-	 * Æ½Ì¨¼ä±¨ÎÄÏûÏ¢Ó¦´ğ1302
+	 * å¹³å°é—´æŠ¥æ–‡æ¶ˆæ¯åº”ç­”1302
 	 * 
 	 * @param infoId
 	 * @return
@@ -649,14 +657,14 @@ public class T809Manager {
 	}
 
 	/**
-	 * ±¨¾¯¶½°ìÓ¦´ğ
+	 * æŠ¥è­¦ç£åŠåº”ç­”
 	 * 
 	 * @param plateNo
 	 * @param plateColor
 	 * @param superviseId
-	 *            ¶½°ìID
+	 *            ç£åŠID
 	 * @param result
-	 *            ¶½°ì½á¹û
+	 *            ç£åŠç»“æœ
 	 * @return
 	 */
 	public static boolean UpWarnMsgUrgeToDoAck(String plateNo, int plateColor,
