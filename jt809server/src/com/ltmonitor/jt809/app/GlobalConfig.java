@@ -73,7 +73,6 @@ public class GlobalConfig {
 			initSendProtocolMap();
 			// 平台网络参数配置
 			parModel = getModel();
-
 		} catch (Exception ex) {
 			logger.error("系统初始化异常", ex);
 		}

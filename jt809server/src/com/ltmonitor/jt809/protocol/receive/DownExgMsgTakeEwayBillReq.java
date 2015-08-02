@@ -38,7 +38,7 @@ public class DownExgMsgTakeEwayBillReq implements IReceiveProtocol {
 		} catch (Exception ex) {
 			logger.error(ex.getMessage(), ex);
 		}
-		String ewayBillInfo = "南钢油库，油品：91#，20吨，发车时间12：00"; // queryBillInfo(message.getPlateNo());
+		String ewayBillInfo = ""; // queryBillInfo(message.getPlateNo());
 
 		return ewayBillInfo;
 	}

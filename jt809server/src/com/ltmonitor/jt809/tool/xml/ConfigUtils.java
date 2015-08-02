@@ -22,7 +22,8 @@ import com.ltmonitor.jt809.model.ProtocolModel;
        Element rootElement = doc.getRootElement();
        List list = rootElement.selectNodes("//" + NODE_BEAN);
  
-       int i = 0; for (int count = list.size(); i < count; i++) {
+       int i = 0; 
+       for (int count = list.size(); i < count; i++) {
          Element beanElement = (Element)list.get(i);
          ProtocolModel pm = new ProtocolModel();
          pm.setType(Integer.valueOf(beanElement.attributeValue(ATRRIBUTE_TYPE), 16).intValue());

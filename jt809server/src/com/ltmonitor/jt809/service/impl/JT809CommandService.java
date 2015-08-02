@@ -222,15 +222,12 @@ public class JT809CommandService implements IJT809CommandService {
 		} else if (tc.getCmd() == 0x1003) {
 			// 主链路注销请求消息
 			return T809Manager.UpDisconnectReq();
-
 		} else if (tc.getCmd() == 0x1007) {
-			// 主链路注销请求消息
+			// 主链路断开请求消息
 			return T809Manager.UpDisconnectMainLinkInform();
-
 		} else if (tc.getCmd() == 0x1008) {
-			// 主链路注销请求消息
+			// 下级平台主动关闭链路通知消息
 			return T809Manager.UpCloseLinkInform();
-
 		} else if (tc.getSubCmd() == 0x1403) {
 			// 主动上报报警处理结果
 			int alarmId = Integer.parseInt(strData[0]);
@@ -250,7 +247,6 @@ public class JT809CommandService implements IJT809CommandService {
 		}
 
 		return false;
-		// return ts;
 	}
 
 	private List<GnssData> getHistoryGnssData(String plateNo, Date start,

@@ -6,7 +6,7 @@
       <bean type="1004" class="com.ltmonitor.jt809.protocol.receive.UpDisconnectRsp"/><!-- 主链路注销请求应答包  -->
       <bean type="1006" class="com.ltmonitor.jt809.protocol.receive.UpLinkTestRsp"/><!-- 保持连接应答包 -->
       <bean type="9005" class="com.ltmonitor.jt809.protocol.receive.DownLinkTestReq"/><!-- 保持连接应答包 -->
-      <bean type="9001" class="com.ltmonitor.jt809.protocol.receive.DownConnectReq"/><!-- 登录请求包   -->
+      <bean type="9001" class="com.ltmonitor.jt809.protocol.receive.DownConnectReq"/><!-- 从链路登录请求包   -->
       <bean type="9003" class="com.ltmonitor.jt809.protocol.receive.DownDisconnectReq"/><!-- 从链路注销请求包   -->
       <bean type="9501" class="com.ltmonitor.jt809.protocol.receive.DownCtrlMsgMonitorVehicleReq"/><!-- 车辆单项监控请求  -->
       <bean type="9302" class="com.ltmonitor.jt809.protocol.receive.DownPlatformMsgInfoReq"/><!-- 报文间平台请求9302 ，应答1302 -->

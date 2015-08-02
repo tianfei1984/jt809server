@@ -1,5 +1,9 @@
  package com.ltmonitor.jt809.model;
- 
+ /**
+  * 平台参数
+  * @author tianfei
+  *
+  */
  public class ParameterModel
  {
 	 /**

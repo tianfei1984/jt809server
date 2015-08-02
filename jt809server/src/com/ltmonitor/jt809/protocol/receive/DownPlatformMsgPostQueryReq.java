@@ -1,21 +1,10 @@
 package com.ltmonitor.jt809.protocol.receive;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.log4j.Logger;
-
-import com.ltmonitor.entity.GovPlatformMsg;
-import com.ltmonitor.jt809.app.GlobalConfig;
-import com.ltmonitor.jt809.app.ServiceLauncher;
-import com.ltmonitor.jt809.app.T809Manager;
-import com.ltmonitor.jt809.entity.CheckRecord;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
 import com.ltmonitor.jt809.tool.Tools;

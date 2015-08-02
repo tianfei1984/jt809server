@@ -25,7 +25,7 @@ public class MainApp {
 					break;
 				}
 			}
-
+			//╪стьеДжцнд╪Ч 
 			ServiceLauncher.launch();
 
 			GlobalConfig.initSystem();

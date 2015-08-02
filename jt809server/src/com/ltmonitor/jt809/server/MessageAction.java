@@ -36,7 +36,7 @@ public class MessageAction {
 			}
 			GlobalConfig.putMsg(message);
 			//接收到命令，如果需要应答，就返回应答数据，由socket连接发送应答
-			if ((data != null) && (data.length() > 0)) {
+			if (data != null && data.length() > 0) {
 				SendData(data, session);
 			}
 		} else {

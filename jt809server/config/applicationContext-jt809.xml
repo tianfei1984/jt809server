@@ -2,11 +2,12 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 <beans default-autowire="byName" default-lazy-init="true">
 	
+	<!-- JT809命令服务 -->
 	<bean id="jt809CommandService" class="com.ltmonitor.jt809.service.impl.JT809CommandService">
 		<property name="baseDao" ref="baseDao"></property>
 	</bean>
 	
-	
+	<!-- 数据转发服务 -->
 	<bean id="transferService" class="com.ltmonitor.jt809.service.impl.TransferService" init-method="startTransfer"  destroy-method="startTransfer">
 		<property name="baseDao" ref="baseDao"></property>
 		<property name="transferFromDb" value="${transferFromDb}"></property>
