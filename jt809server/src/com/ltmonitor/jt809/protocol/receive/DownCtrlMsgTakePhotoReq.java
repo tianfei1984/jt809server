@@ -1,21 +1,19 @@
 package com.ltmonitor.jt809.protocol.receive;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.Timestamp;
-
 import org.apache.log4j.Logger;
-
 import com.ltmonitor.entity.TakePhotoModel;
 import com.ltmonitor.entity.TerminalCommand;
 import com.ltmonitor.jt809.app.ServiceLauncher;
 import com.ltmonitor.jt809.app.T809Manager;
 import com.ltmonitor.jt809.model.JT809Message;
 import com.ltmonitor.jt809.protocol.IReceiveProtocol;
-import com.ltmonitor.jt809.protocol.send.UpCtrlMsgTakePhotoAck;
 import com.ltmonitor.service.JT808Constants;
 
-
+/**
+ * 车辆拍照请求消息
+ * @author tianfei
+ *
+ */
 public class DownCtrlMsgTakePhotoReq implements IReceiveProtocol {
 	private Logger logger = Logger.getLogger(DownWarnMsgTodoReq.class);
 
@@ -63,17 +61,16 @@ public class DownCtrlMsgTakePhotoReq implements IReceiveProtocol {
 			logger.error(ex.getMessage(), ex);
 		}
 
-
 		//UpCtrlMsgTakePhotoAck ack = new UpCtrlMsgTakePhotoAck();
-		TakePhotoModel tm = new TakePhotoModel();
-		tm.setPlateNo(message.getPlateNo());
-		tm.setPlateColor(message.getPlateColor());
-		tm.setLensId(ph.getLensId());
-		tm.setPhotoSize(ph.getPhotoSize());
-		tm.setPhotoFormat(1);
-		byte[] temp = new byte[36];
-		tm.setPhotoData(temp);
-		T809Manager.UpCtrlMsgTakePhotoAck(tm);
+//		TakePhotoModel tm = new TakePhotoModel();
+//		tm.setPlateNo(message.getPlateNo());
+//		tm.setPlateColor(message.getPlateColor());
+//		tm.setLensId(ph.getLensId());
+//		tm.setPhotoSize(ph.getPhotoSize());
+//		tm.setPhotoFormat(1);
+//		byte[] temp = new byte[36];
+//		tm.setPhotoData(temp);
+//		T809Manager.UpCtrlMsgTakePhotoAck(tm);
 		
 		return "";
 	}
