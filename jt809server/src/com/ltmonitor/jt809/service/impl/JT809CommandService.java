@@ -244,6 +244,11 @@ public class JT809CommandService implements IJT809CommandService {
 			pm.setInfoId(infoId);
 			pm.setMessage(strData[3]);
 			return T809Manager.UpPlatFormMsgPostQueryAck(pm);
+		} else if(tc.getSubCmd() == 0x1401){
+			//报警督办应答
+			int superviseId = Integer.parseInt(strData[0]);
+			int result = Integer.parseInt(strData[1]);
+			T809Manager.UpWarnMsgUrgeToDoAck(tc.getPlateNo(), tc.getPlateColor(), superviseId, (byte)result);
 		}
 
 		return false;

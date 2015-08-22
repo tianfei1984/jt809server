@@ -3,13 +3,7 @@ package com.ltmonitor.jt809.app;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
-
-import com.ltmonitor.jt809.protocol.send.UpConnectReq;
-import com.ltmonitor.jt809.protocol.send.UpExgMsgRealLocation;
-import com.ltmonitor.jt809.protocol.send.UpExgMsgRegister;
-import com.ltmonitor.jt809.protocol.send.UpLinkTestReq;
 import com.ltmonitor.jt809.server.PlatformClient;
 
 
@@ -66,12 +60,13 @@ public class DNSSTimer {
 			public void run() {
 				try
 				{
+					//fusitepingtai
 					DNSSTimer.this.counter += 1;
 					if (DNSSTimer.this.counter % 30 == 0) {
 						if (!PlatformClient.session.isConnected())
 								PlatformClient.connect();
 					}
-					if ((DNSSTimer.this.counter > 0 && DNSSTimer.this.counter % 30 == 0)
+					if ((DNSSTimer.this.counter > 0 && DNSSTimer.this.counter % 60 == 0)
 							&& (GlobalConfig.isConnection)) {
 						if ((PlatformClient.session.isConnected())
 								&& (!GlobalConfig.isOpenPlat)) {
@@ -79,12 +74,11 @@ public class DNSSTimer {
 							T809Manager.UpConnectReq();
 						}
 					}
-					if ((GlobalConfig.isConnection) && (T809Manager.mainLinkConnected))
-					{
-							if (DNSSTimer.this.counter % 20 == 0) {
-								//主链路心跳
-								T809Manager.UpLinkTestReq();
-							}
+					if ((GlobalConfig.isConnection) && (T809Manager.mainLinkConnected)){
+						if (DNSSTimer.this.counter % 20 == 0) {
+							//主链路心跳
+							T809Manager.UpLinkTestReq();
+						}
 					}
 			
 				}catch(Exception ex){

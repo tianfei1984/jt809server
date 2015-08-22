@@ -29,7 +29,7 @@ public class PlatformClient {
 	private static ConnectFuture future;
 	private static IoConnector connector = null;
 	//主链路处理器
-	private PlatformClientHandler handler = new PlatformClientHandler();
+	private static PlatformClientHandler handler = new PlatformClientHandler();
 
 	public static final synchronized PlatformClient getInstance() {
 		if (instance == null) {
@@ -39,6 +39,10 @@ public class PlatformClient {
 	}
 
 	public static final boolean connect() {
+		connector = new NioSocketConnector();
+		connector.getFilterChain().addLast("codec",
+				new ProtocolCodecFilter(new TiamaesMessageCodecFactory()));
+		connector.setHandler(handler);
 		try {
 			future = connector.connect(new InetSocketAddress(GlobalConfig.parModel
 					.getPlatformIP(), GlobalConfig.parModel.getPlatformPort()));
@@ -49,8 +53,9 @@ public class PlatformClient {
 		} catch (Exception e) {
 			GlobalConfig.isConnection = false;
 			logger.error("主链路连接失败,服务器:" + GlobalConfig.parModel.getPlatformIP()
-					+ ":" + GlobalConfig.parModel.getPlatformPort());
+					+ ":" + GlobalConfig.parModel.getPlatformPort()+"错误信息："+e.getMessage());
 			// logger.error("Socket Connection Exception", e);
+			e.printStackTrace();
 			GlobalConfig.isOpenPlat = false;
 		} finally {
 			return GlobalConfig.isConnection;

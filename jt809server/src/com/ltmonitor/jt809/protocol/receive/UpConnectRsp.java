@@ -50,8 +50,8 @@ import com.ltmonitor.jt809.protocol.IReceiveProtocol;
        result = "Default“Ï≥£";
      }
      logger.warn(result);
-     T809Manager.setMainLinkState(isSuccess, result);
      message.setMsgDescr(result);
+     T809Manager.setMainLinkState(isSuccess, result);
  
      return "";
    }

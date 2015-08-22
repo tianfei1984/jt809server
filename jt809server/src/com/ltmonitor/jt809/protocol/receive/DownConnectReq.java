@@ -21,12 +21,14 @@ public class DownConnectReq implements IReceiveProtocol {
 		// int result = Integer.parseInt(strResult.substring(0, 8));
 		message.setMsgDescr("从链路连接成功,校验码:" + result);
 		this.logger.warn("从链路连接成功,校验码:" + result);
-		
-		T809Manager.setSubLinkState(true, "从链路连接成功");
-
-		// 从链路连接应答消息
-		T809Manager.DownConnectRsp();
-
+		try {
+			Thread.sleep(500);
+			T809Manager.setSubLinkState(true, "连接成功");
+			
+			// 从链路连接应答消息
+			T809Manager.DownConnectRsp();
+		} catch (InterruptedException e) {
+		}
 		
 		return null;
 	}

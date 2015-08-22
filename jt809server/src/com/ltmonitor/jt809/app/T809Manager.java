@@ -1,20 +1,13 @@
 package com.ltmonitor.jt809.app;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-
 import org.apache.log4j.Logger;
-
-import com.ltmonitor.dao.IBaseDao;
-import com.ltmonitor.entity.GPSRealData;
 import com.ltmonitor.entity.GnssData;
 import com.ltmonitor.entity.PlatformState;
 import com.ltmonitor.entity.TakePhotoModel;
-import com.ltmonitor.entity.VehicleData;
 import com.ltmonitor.entity.WarnData;
 import com.ltmonitor.jt809.entity.DriverModel;
 import com.ltmonitor.jt809.entity.CheckRecord;
@@ -55,7 +48,6 @@ import com.ltmonitor.jt809.protocol.send.UpWarnMsgUrgeToDoAck;
 import com.ltmonitor.jt809.server.LocalServer;
 import com.ltmonitor.jt809.server.PlatformClient;
 import com.ltmonitor.jt809.tool.Tools;
-import com.ltmonitor.util.DateUtil;
 
 /**
  * 提供外部调用809转发平台的接口
@@ -345,6 +337,7 @@ public class T809Manager {
 		if (PlatformClient.Send(msg) == false) {
 			res = LocalServer.Send(msg);
 		}
+		logger.info("send:"+msg);
 		return res;
 	}
 	
@@ -436,25 +429,25 @@ public class T809Manager {
 
 
 	// 向上级平台发送数据
-		private static boolean SendFromSubLink(String msg) {
-			// 优先使用主链路发送数据
-			boolean res = LocalServer.Send(msg);
-			if (res = false) {
-				PlatformClient pc = PlatformClient.getInstance();
-				res = PlatformClient.Send(msg);
-			}
-			return res;
+	private static boolean SendFromSubLink(String msg) {
+		// 优先使用主链路发送数据
+		boolean res = LocalServer.Send(msg);
+		if (res = false) {
+			PlatformClient pc = PlatformClient.getInstance();
+			res = PlatformClient.Send(msg);
 		}
-		
-		// 向上级平台发送数据
-		public static boolean SendFromSubLink(JT809Message msg) {
-			String strMsg = Tools.getHeaderAndFlag(GlobalConfig.getSN(),
-					msg.getMessageBody(), msg.getMsgType(),
-					msg.getMsgGNSSCenterID(), T809Manager.encrypt);
-			msg.setPacketDescr(strMsg);
-			GlobalConfig.putMsg(msg);
-			return SendFromSubLink(strMsg);
-		}
+		return res;
+	}
+	
+	// 向上级平台发送数据
+	public static boolean SendFromSubLink(JT809Message msg) {
+		String strMsg = Tools.getHeaderAndFlag(GlobalConfig.getSN(),
+				msg.getMessageBody(), msg.getMsgType(),
+				msg.getMsgGNSSCenterID(), T809Manager.encrypt);
+		msg.setPacketDescr(strMsg);
+		GlobalConfig.putMsg(msg);
+		return SendFromSubLink(strMsg);
+	}
 		
 		
 	/**

@@ -40,6 +40,8 @@ public class GlobalConfig {
 	public static HashMap<String, CheckRecord> chagang = new HashMap<String, CheckRecord>();
 
 	private static Queue<JT809Message> msgQueue = new ConcurrentLinkedQueue<JT809Message>();
+	//配置文件 路径 
+	private static final String CONFIG_PATH = "/Users/tianfei/soft/jt809/parameter/";
 
 	public static void putMsg(JT809Message tm) {
 		if (displayMsg == false) {
@@ -79,7 +81,7 @@ public class GlobalConfig {
 	}
 
 	public static ParameterModel getModel() {
-		Document doc = XmlUtils.parseXml(".\\parameter\\parameter.xml");
+		Document doc = XmlUtils.parseXml(CONFIG_PATH + "parameter.xml");
 
 		ParameterModel pm = new ParameterModel();
 		if (doc != null) {
@@ -139,7 +141,7 @@ public class GlobalConfig {
 		pe.addAttribute("licenseno", pm.getLicenseNo());
 		pe.addAttribute("username", pm.getUsername());
 		try {
-			FileWriter out = new FileWriter(".\\parameter\\database.xml");
+			FileWriter out = new FileWriter(CONFIG_PATH + "database.xml");
 			XmlUtils.printXml(doc, out);
 		} catch (Exception ex) {
 			//this.logger.warn("获取参数异常：" + ex.getMessage());
@@ -147,6 +149,6 @@ public class GlobalConfig {
 	}
 
 	public static void initSendProtocolMap() {
-		protocolMap = ConfigUtils.getConfig(".\\parameter\\protocol.xml");
+		protocolMap = ConfigUtils.getConfig(CONFIG_PATH + "protocol.xml");
 	}
 }
